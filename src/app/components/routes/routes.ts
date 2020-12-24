@@ -12,6 +12,7 @@ import { OrganizacionesModule } from './template/organizaciones/organizaciones.m
 import { FamiliaService as FamiliaGuard} from './../../guards/familia.service';
 import { OrganizacionService as OrganizacionGuard} from './../../guards/organizacion.service';
 import { AdminService as AdminGuard} from './../../guards/admin.service';
+import { BienvenidaComponent } from './template/pages/bienvenida/bienvenida.component';
 
 
 export const routes: Routes = [
@@ -65,6 +66,8 @@ export const routes: Routes = [
     { path: 'maintenance', component: MaintenanceComponent },
     { path: '404', component: Error404Component },
     { path: '500', component: Error500Component },
+    { path: 'bienvenida', component: BienvenidaComponent },
+
 
     // Not found
     { path: '**', redirectTo: 'mis-arboles' }
