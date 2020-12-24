@@ -23,11 +23,12 @@ export class LoginComponent implements OnInit {
     password:string;
     errorMessage:string;
 
-    roles:string[]=[];
+    roles:string[];
 
     valForm: FormGroup;
 
     constructor(public settings: SettingsService, fb: FormBuilder, private authService:AuthService, private tokenService:TokenService,private router:Router) {
+        this.roles=[];
 
         this.valForm = fb.group({
             'email': [null, Validators.compose([Validators.required, CustomValidators.email])],
@@ -46,7 +47,7 @@ export class LoginComponent implements OnInit {
             console.log(value);
             this.nombreUsuario=value.email;
             this.password=value.password;
-            //this.onLogin();
+            this.onLogin();
             //this.loginService.login();
             //this.authService.loginByEmail(value);
         }
@@ -57,20 +58,30 @@ export class LoginComponent implements OnInit {
             this.isLogged=true;
             this.isLoginFail=false;
             this.roles=this.tokenService.getAuthorities();
+            this.roles.forEach(rol => {
+                if (rol === 'ROLE_FAM')
+                    this.router.navigate(['/mis-arboles']);
+                else if (rol === 'ROLE_ORG')
+                    this.router.navigate(['/homeorganizacion']);
+                else if (rol === 'ROLE_ADMIN')
+                    this.router.navigate(['/organizaciones']);
+            });
         }
     }
 
     onLogin(){
         this.loginUsuario=new LoginUsuario(this.nombreUsuario,this.password);
+        console.log(this.loginUsuario);
         this.authService.login(this.loginUsuario).subscribe(
             data=> {
+                console.log(data);
                 this.isLogged=true;
                 this.isLoginFail=false;
-
                 this.tokenService.setToken(data.token);
                 this.tokenService.setUserName(data.nombreUsuario);
                 this.tokenService.setAuthorities(data.authorities);
-                this.roles=data.authorities;
+                this.roles=this.tokenService.getAuthorities();
+                console.log(this.roles);
                 this.roles.forEach(rol=>{
                     if(rol ==='ROLE_FAM')
                         this.router.navigate(['/mis-arboles']);
@@ -84,7 +95,7 @@ export class LoginComponent implements OnInit {
                 this.isLogged=false;
                 this.isLoginFail=true;
                 this.errorMessage=err.error.message;
-                console.log(this.errorMessage);
+                console.log(err);
             }
 
         )

@@ -7,7 +7,7 @@ import { Familia } from 'src/app/interfaces/familia';
   providedIn: 'root'
 })
 export class FamiliasService {
-  apiBaseUrl="";
+  apiBaseUrl='https://apimpf.herokuapp.com';
   constructor(private http: HttpClient) { }
   
   public findAllFamilias(): Observable<any>{

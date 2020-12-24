@@ -13,46 +13,20 @@ import { RepresentanteService } from '../representante/representante.service';
   providedIn: 'root'
 })
 export class RegisterService {
-  apiBaseUrl:string ='';
-  constructor(private http: HttpClient, private representanteService:RepresentanteService, private organizacionesServoce:OrganizacionesService) { }
+  apiBaseUrl: string = 'https://apimpf.herokuapp.com';
+  constructor(private http: HttpClient, private representanteService: RepresentanteService, private organizacionesServoce: OrganizacionesService) { }
 
-  public registrarFamilia(nuevaFamilia:Familia){
-    this.http.post(this.apiBaseUrl+'/familia', nuevaFamilia)
-    .subscribe(familia=>{
-      // nuevoUsuario.idFamilia=(familia as Familia).id;
-      console.log(familia);
-      // this.registrarUsuario(nuevoUsuario).subscribe(respuesta=>console.log(respuesta));
-    });
+  public registrarFamilia(nuevaFamilia: Familia): Observable<any> {
+    return this.http.post(this.apiBaseUrl + '/familia', nuevaFamilia);
   }
-  public registrarOrganizacion(nuevaOrganizacion:Organizacion,nuevoRepresentante:Representante){
-    this.http.post(this.apiBaseUrl+'/representante', nuevoRepresentante)
-    .subscribe((representante:Representante)=>{
-      console.log(representante);
+  public registrarOrganizacion(nuevaOrganizacion: Organizacion): Observable<any> {
+    return this.http.post(this.apiBaseUrl + '/organizacion', nuevaOrganizacion);
 
-      this.http.post(this.apiBaseUrl+'/organizacion', nuevaOrganizacion).subscribe((organizacion:Organizacion)=>{
-        nuevoRepresentante.idorganizacion=organizacion.id;
-      console.log(organizacion);
-
-        //this.http.put(this.apiBaseUrl+'/representante', nuevoRepresentante).subscribe((representante:Representante)=>console.log(representante));
-      })
-    });
-
-
-    // this.http.post(this.apiBaseUrl+'/organizacion', nuevaOrganizacion)
-    // .subscribe(organizacion=>{
-    //               //nuevoUsuario.idOrganizacion=(organizacion as Organizacion).id;
-    //   nuevoRepresentante.idorganizacion=(organizacion as Organizacion).id;
-    //   console.log(organizacion);
-    //                 //this.registrarUsuario(nuevoUsuario).subscribe(respuesta=>console.log(respuesta));
-    //   this.representanteService.createRepresentante(nuevoRepresentante).subscribe((respuesta:Representante)=>{
-    //     console.log(respuesta);
-    //     // nuevaOrganizacion.representante=respuesta.dni;
-    //     // this.http.put(this.apiBaseUrl+'/organizacion',)
-
-    //   });
-    // });
   }
-  public registrarUsuario(nuevoUsuario):Observable<any>{
-    return this.http.post(this.apiBaseUrl+'/usuario', nuevoUsuario);
+  public registrarRepresentate(nuevoRepresentante: Representante): Observable<any> {
+    return this.http.post(this.apiBaseUrl + '/representante', nuevoRepresentante);
   }
+  // public registrarUsuario(nuevoUsuario):Observable<any>{
+  //   return this.http.post(this.apiBaseUrl+'/usuario', nuevoUsuario);
+  // }
 }

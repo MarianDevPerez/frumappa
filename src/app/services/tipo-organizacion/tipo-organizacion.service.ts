@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TipoOrganizacionService {
-  apiBaseUrl:string ='https://apimpf.herokuapp.com/';
+  apiBaseUrl:string ='https://apimpf.herokuapp.com';
 
   constructor(private http: HttpClient) {
    }

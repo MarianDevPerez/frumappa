@@ -17,8 +17,9 @@
           <label for="exampleFormControlSelect1"></label>
           <select class="form-control" id="exampleFormControlSelect1" required [(ngModel)]="arbol.nom_especie"
             name="nombre">
-            <option selected>Seleccione un Arbol...</option>
-            <option>Manzano</option>
+            <option selected hidden>Seleccione una Especie...</option>
+            <option *ngFor="let especie of especies">{{especie.nombre}}</option>
+            <!-- <option>Manzano</option>
             <option>Naranjo</option>
             <option>Ciruelo</option>
             <option>Frutilla</option>
@@ -33,7 +34,7 @@
             <option>Toronja</option>
             <option>Pomelo</option>
             <option>Parral</option>
-            <option>Menbrillo</option>
+            <option>Menbrillo</option> -->
           </select>
         </div>
       </form>
@@ -74,7 +75,7 @@
     </div>
 
     <div class="text-center mt-3 mb-5 animated fast fadeIn">
-      <button class="btn btn-outline-success btn-sx" type="button" (click)="guardarArbol()">Confirmar</button>
+      <button class="btn btn-success btn-sx" type="button" (click)="guardarArbol()">Confirmar</button>
     </div>
 
   </div>

@@ -17,6 +17,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { OAuthModule } from 'angular-oauth2-oidc';
 
+//interceptor Provider
+import { interceptorProvider } from './interceptors/user-interceptor.service';
+
+
 // https://github.com/ocombe/ng2-translate/issues/218
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -48,7 +52,7 @@ export function createTranslateLoader(http: HttpClient) {
         }),
         NgbModule
     ],
-    providers: [],
+    providers: [interceptorProvider],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

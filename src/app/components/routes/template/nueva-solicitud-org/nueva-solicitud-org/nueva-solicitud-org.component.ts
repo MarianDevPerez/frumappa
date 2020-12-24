@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Arbol } from 'src/app/interfaces/arbol';
 import { Familia } from 'src/app/interfaces/familia';
 import { Recolector } from 'src/app/interfaces/recolector';
@@ -21,7 +21,7 @@ export class NuevaSolicitudOrgComponent implements OnInit {
   public recolectores:Array<Recolector>;
   public nuevaSolicitud:Solicitud;
   public recolectorSelect:number;
-  constructor(private route:ActivatedRoute,private arbolesService:ArbolesService, private familiaService:FamiliasService, private recolectoresService:RecolectoresService, private solicitudesService:SolicitudesService) { 
+  constructor(private route:ActivatedRoute,private arbolesService:ArbolesService, private familiaService:FamiliasService, private recolectoresService:RecolectoresService, private solicitudesService:SolicitudesService, private router:Router) { 
     this.idArbol=parseInt(this.route.snapshot.paramMap.get('id')); 
   }
 
@@ -47,10 +47,14 @@ export class NuevaSolicitudOrgComponent implements OnInit {
       
       
       this.nuevaSolicitud.recolector=(this.recolectorSelect);
+
       this.nuevaSolicitud.organizacion=1;//cambiar
       
-      this.solicitudesService.createSolicitud(this.nuevaSolicitud).subscribe(solicitud => console.log(solicitud))
+      this.solicitudesService.createSolicitud(this.nuevaSolicitud).subscribe(solicitud =>{ console.log(solicitud);
+        this.router.navigate(['/mapa-arboles']);
       
+      });
+
       
 
     }else console.log("Error al cargar nueva solicitud");

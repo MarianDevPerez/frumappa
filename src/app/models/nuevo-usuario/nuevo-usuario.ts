@@ -1,14 +1,27 @@
 export class NuevoUsuario {
-    //nombre:string;
+    nombre:string;
     //nombreusuario:string;
     email:string;
     password:string;
-    authorities: string[];
-    constructor(email:string,password:string, authorities:string[]){//nombre:string,nombreusuario:string,
-        //this.nombre=nombre;
+    //authorities: string[];
+    roles:string[];
+    idFamilia:number;
+    idOrganizacion:number;
+    idAdmin:number;
+
+
+    constructor(email:string,password:string, nombre:string, authorities){//,nombreusuario:string,
+        this.nombre=nombre;
         //this.nombreusuario=nombreusuario;
         this.email=email;
         this.password=password;
-        this.authorities=authorities;
+        this.roles=authorities;
     }
+     setIdFamilia(id:number){
+         this.idFamilia=id;
+     }
+     setIdOrganizacion(id:number){
+         this.idOrganizacion=id;
+    }
+    
 }
