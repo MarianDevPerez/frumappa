@@ -7,7 +7,7 @@ import { Recolector } from 'src/app/interfaces/recolector';
   providedIn: 'root'
 })
 export class RecolectoresService {
-  apiBaseUrl:string ='https://apimpf.herokuapp.com/';
+  apiBaseUrl:string ='https://apimpf.herokuapp.com';
 
 constructor(private http: HttpClient) { }
 //find 1 recolector

@@ -9,6 +9,9 @@ import { MaintenanceComponent } from './template/pages/maintenance/maintenance.c
 import { Error404Component } from './template/pages/error404/error404.component';
 import { Error500Component } from './template/pages/error500/error500.component';
 import { OrganizacionesModule } from './template/organizaciones/organizaciones.module';
+import { FamiliaService as FamiliaGuard} from './../../guards/familia.service';
+import { OrganizacionService as OrganizacionGuard} from './../../guards/organizacion.service';
+import { AdminService as AdminGuard} from './../../guards/admin.service';
 
 
 export const routes: Routes = [
@@ -18,7 +21,7 @@ export const routes: Routes = [
         component: LayoutComponent,
         children: [
             { path: '', redirectTo: 'mis-arboles', pathMatch: 'full' },
-            { path: 'mis-arboles', loadChildren: () => import('./template/home/home.module').then(m => m.HomeModule) },
+            { path: 'mis-arboles', loadChildren: () => import('./template/home/home.module').then(m => m.HomeModule),canActivate: [FamiliaGuard],data: {expectedRol: ['fam']} },
             //{ path: 'home', loadChildren: () => import('./template/home/home.module').then(m => m.HomeModule) },
             { path: 'dashboard', loadChildren: () => import('./template/dashboard/dashboard.module').then(m => m.DashboardModule) },
             { path: 'widgets', loadChildren: () => import('./template/widgets/widgets.module').then(m => m.WidgetsModule) },
@@ -32,22 +35,22 @@ export const routes: Routes = [
             { path: 'ecommerce', loadChildren: () => import('./template/ecommerce/ecommerce.module').then(m => m.EcommerceModule) },
             { path: 'extras', loadChildren: () => import('./template/extras/extras.module').then(m => m.ExtrasModule) },
             // tslint:disable-next-line: max-line-length
-            { path: 'mis-solicitudes', loadChildren: () => import('./template/missolicitudes/missolicitudes.module').then(m => m.MissolicitudesModule) },
+            { path: 'mis-solicitudes', loadChildren: () => import('./template/missolicitudes/missolicitudes.module').then(m => m.MissolicitudesModule),canActivate: [FamiliaGuard],data: {expectedRol: ['fam']} },
             // tslint:disable-next-line: max-line-length
-            { path: 'organizaciones', loadChildren: () => import('./template/organizaciones/organizaciones.module').then(m => m.OrganizacionesModule) },
-            { path: 'familias', loadChildren: () => import('./template/familias/familias.module').then(m => m.FamiliasModule) },
+            { path: 'organizaciones', loadChildren: () => import('./template/organizaciones/organizaciones.module').then(m => m.OrganizacionesModule),canActivate: [AdminGuard],data: {expectedRol: ['admin']} },//only admin
+            { path: 'familias', loadChildren: () => import('./template/familias/familias.module').then(m => m.FamiliasModule) ,canActivate: [AdminGuard],data: {expectedRol: ['admin']}},//only admin
             // tslint:disable-next-line: max-line-length
-            { path: 'recolectores', loadChildren: () => import('./template/recolectores/recolectores.module').then(m => m.RecolectoresModule)},
+            { path: 'recolectores', loadChildren: () => import('./template/recolectores/recolectores.module').then(m => m.RecolectoresModule) ,canActivate: [OrganizacionGuard],data: {expectedRol: ['org']} },
             // tslint:disable-next-line: max-line-length
-            { path: 'micuenta', loadChildren: () => import('./template/micuentaorganizacion/micuentaorganizacion.module').then(m => m.MicuentaorganizacionModule)},
+            { path: 'micuenta', loadChildren: () => import('./template/micuentaorganizacion/micuentaorganizacion.module').then(m => m.MicuentaorganizacionModule) ,canActivate: [OrganizacionGuard],data: {expectedRol: ['org']}},
             //FALTA MAPA
-            { path: 'mapa-arboles', loadChildren: () => import('./template/mapaarboles/mapaarboles.module').then(m => m.MapaarbolesModule)},
-            
+            { path: 'mapa-arboles', loadChildren: () => import('./template/mapaarboles/mapaarboles.module').then(m => m.MapaarbolesModule) ,canActivate: [OrganizacionGuard],data: {expectedRol: ['org']}},
+
             // tslint:disable-next-line: max-line-length
-            { path: 'homeorganizacion', loadChildren: () => import('./template/homeorganizacion/homeorganizacion.module').then(m => m.HomeorganizacionModule)},
+            { path: 'homeorganizacion', loadChildren: () => import('./template/homeorganizacion/homeorganizacion.module').then(m => m.HomeorganizacionModule) ,canActivate: [OrganizacionGuard],data: {expectedRol: ['org']}},
             // tslint:disable-next-line: max-line-length
-            { path: 'perfilorganizacion', loadChildren: () => import('./template/perfilorganizacion/perfilorganizacion.module').then(m => m.PerfilorganizacionModule)},
-            { path: 'cuidados', loadChildren: () => import('./template/cuidadodearboles/cuidadodearboles.module').then(m => m.CuidadodearbolesModule)},
+            { path: 'perfilorganizacion', loadChildren: () => import('./template/perfilorganizacion/perfilorganizacion.module').then(m => m.PerfilorganizacionModule),canActivate: [FamiliaGuard],data: {expectedRol: ['fam']} },
+            { path: 'cuidados', loadChildren: () => import('./template/cuidadodearboles/cuidadodearboles.module').then(m => m.CuidadodearbolesModule),canActivate: [FamiliaGuard],data: {expectedRol: ['fam']}},
 
 
 

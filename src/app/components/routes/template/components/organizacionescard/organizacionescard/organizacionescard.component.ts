@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Organizacion } from 'src/app/interfaces/organizacion';
+import { Representante } from 'src/app/interfaces/representante';
+import { RepresentanteService } from 'src/app/services/representante/representante.service';
 
 @Component({
   selector: 'app-organizacionescard',
@@ -8,10 +10,11 @@ import { Organizacion } from 'src/app/interfaces/organizacion';
 })
 export class OrganizacionescardComponent implements OnInit {
   @Input() organizacion:Organizacion;
-  constructor() { }
+  public representante:Representante;
+  constructor(private representantesService:RepresentanteService) { }
 
   ngOnInit(): void {
-    
+    this.representantesService.findRepresentante(this.organizacion.representante).subscribe((representante:Representante)=>this.representante=representante)
   }
 
 }

@@ -9,7 +9,6 @@
       </div>
       <div class="card-body">
         <h5 class="text-center py-2">Inicia sesión para ver tu jardín</h5>
-        <div *ngIf="isLoginFail" class="alert alert-danger">{{errorMessage}}</div>
         <form [formGroup]="valForm" class="form-validate mb-3" role="form" name="loginForm" novalidate=""
           (submit)="submitForm($event, valForm.value)">
 
@@ -45,6 +44,9 @@
               *ngIf="valForm.controls['password'].hasError('required') && (valForm.controls['password'].dirty || valForm.controls['password'].touched)">
               Este campo es requerido</div>
           </div>
+
+        <div *ngIf="isLoginFail" class="alert alert-danger mt-2">Correo y/o contraseña incorrecta</div>
+
           <div class="clearfix">
             <div class="checkbox c-checkbox float-left mt0">
               <label>
@@ -59,6 +61,7 @@
           </div>
           <button class="btn btn-block btn-success mt-2" type="submit">Iniciar sesión
           </button>
+
         </form>
         <!-- <div class="alert alert-danger text-center" ></div> -->
         <p class="pt-1 text-center">¿No tienes una cuenta?

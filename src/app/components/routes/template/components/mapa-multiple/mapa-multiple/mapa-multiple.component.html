@@ -6,10 +6,10 @@
           <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [scrollwheel]="scrollwheel" class="gmap"
             [fullscreenControl]="true" *ngIf="marcadores!=undefined">
 
-            <agm-marker #markerElem (mouseOver)="window.open()" (mouseOut)="window.close()"
+            <agm-marker #markerElem
               *ngFor="let marcador of marcadores" [latitude]="marcador.arbol.lat" [longitude]="marcador.arbol.lng"
               [label]="marcador.arbol.nom_especie" (mapClick)="openInfo(markerElem)">
-              <agm-info-window #window>
+              <agm-info-window>
                 <h6>{{marcador.arbol.nom_especie}}</h6>
                 <p><strong>Familia: {{marcador.familia.nombre}}</strong></p>
                 <div class="center">

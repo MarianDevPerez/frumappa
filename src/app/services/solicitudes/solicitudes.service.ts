@@ -7,7 +7,7 @@ import { Solicitud } from 'src/app/interfaces/solicitud';
   providedIn: 'root'
 })
 export class SolicitudesService {
-  apiBaseUrl:string ='https://apimpf.herokuapp.com/';
+  apiBaseUrl:string ='https://apimpf.herokuapp.com';
 
 constructor(private http: HttpClient) {
  }
