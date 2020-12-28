@@ -90,7 +90,7 @@
     "karma-jasmine-html-reporter": "1.4.2",
     "karma-read-json": "1.1.0",
     "loaders.css": "0.1.2",
-    "lodash": "4.17.12",
+    "lodash": "4.17.19",
     "modernizr": "3.7.1",
     "moment": "2.22.2",
     "ng2-charts": "2.3.0",
