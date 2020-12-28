@@ -16,19 +16,19 @@ import { LoginUsuario } from 'src/app/models/login-usuario/login-usuario';
 })
 export class LoginComponent implements OnInit {
 
-    isLogged=false;
-    isLoginFail=false;
+    isLogged = false;
+    isLoginFail = false;
     loginUsuario: LoginUsuario;
-    nombreUsuario:string;
-    password:string;
-    errorMessage:string;
+    nombreUsuario: string;
+    password: string;
+    errorMessage: string;
 
-    roles:string[];
+    roles: string[];
 
     valForm: FormGroup;
 
-    constructor(public settings: SettingsService, fb: FormBuilder, private authService:AuthService, private tokenService:TokenService,private router:Router) {
-        this.roles=[];
+    constructor(public settings: SettingsService, fb: FormBuilder, private authService: AuthService, private tokenService: TokenService, private router: Router) {
+        this.roles = [];
 
         this.valForm = fb.group({
             'email': [null, Validators.compose([Validators.required, CustomValidators.email])],
@@ -45,8 +45,8 @@ export class LoginComponent implements OnInit {
         if (this.valForm.valid) {
             console.log('Valid!');
             console.log(value);
-            this.nombreUsuario=value.email;
-            this.password=value.password;
+            this.nombreUsuario = value.email;
+            this.password = value.password;
             this.onLogin();
             //this.loginService.login();
             //this.authService.loginByEmail(value);
@@ -54,10 +54,10 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit() {
-        if(this.tokenService.getToken()){
-            this.isLogged=true;
-            this.isLoginFail=false;
-            this.roles=this.tokenService.getAuthorities();
+        if (this.tokenService.getToken()) {
+            this.isLogged = true;
+            this.isLoginFail = false;
+            this.roles = this.tokenService.getAuthorities();
             this.roles.forEach(rol => {
                 if (rol === 'ROLE_FAM')
                     this.router.navigate(['/mis-arboles']);
@@ -69,32 +69,36 @@ export class LoginComponent implements OnInit {
         }
     }
 
-    onLogin(){
-        this.loginUsuario=new LoginUsuario(this.nombreUsuario,this.password);
+    onLogin() {
+        this.loginUsuario = new LoginUsuario(this.nombreUsuario, this.password);
         console.log(this.loginUsuario);
         this.authService.login(this.loginUsuario).subscribe(
-            data=> {
+            data => {
                 console.log(data);
-                this.isLogged=true;
-                this.isLoginFail=false;
+                this.isLogged = true;
+                this.isLoginFail = false;
                 this.tokenService.setToken(data.token);
-                this.tokenService.setUserName(data.nombreUsuario);
+                this.tokenService.setUserName(data.email);
                 this.tokenService.setAuthorities(data.authorities);
-                this.roles=this.tokenService.getAuthorities();
+                this.roles = this.tokenService.getAuthorities();
                 console.log(this.roles);
-                this.roles.forEach(rol=>{
-                    if(rol ==='ROLE_FAM')
+                this.roles.forEach(rol => {
+                    if (rol === 'ROLE_FAM') {
+                        this.tokenService.setFamilia(data.id_fam);
                         this.router.navigate(['/mis-arboles']);
-                    else if(rol ==='ROLE_ORG')
+                    }
+                    else if (rol === 'ROLE_ORG') {
+                        this.tokenService.setOrganizacion(data.id_org);
                         this.router.navigate(['/homeorganizacion']);
-                        else if(rol==='ROLE_ADMIN')
-                            this.router.navigate(['/organizaciones']);
+                    }
+                    else if (rol === 'ROLE_ADMIN')
+                        this.router.navigate(['/organizaciones']);
                 })
             },
-            err =>{
-                this.isLogged=false;
-                this.isLoginFail=true;
-                this.errorMessage=err.error.message;
+            err => {
+                this.isLogged = false;
+                this.isLoginFail = true;
+                this.errorMessage = err.error.message;
                 console.log(err);
             }
 

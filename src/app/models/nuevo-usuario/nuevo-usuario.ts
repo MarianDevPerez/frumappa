@@ -23,5 +23,8 @@ export class NuevoUsuario {
      setIdOrganizacion(id:number){
          this.idOrganizacion=id;
     }
+    setRoles(roles:string[]){
+        this.roles=roles;
+    }
     
 }

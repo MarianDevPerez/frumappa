@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ActualizaUsuario } from 'src/app/models/actualizaUsuario/actualiza-usuario';
 import { JwtDTO } from 'src/app/models/jwt-DTO/jwt-dto';
 import { LoginUsuario } from 'src/app/models/login-usuario/login-usuario';
 import { NuevoUsuario } from 'src/app/models/nuevo-usuario/nuevo-usuario';
@@ -20,8 +21,8 @@ export class AuthService {
   public login(loginUsuario: LoginUsuario): Observable<JwtDTO>{
     return this.http.post<JwtDTO>(this.authURL+'auth/login/', loginUsuario);
   }
-  public actualizaUsuario(usuario:NuevoUsuario): Observable<any>{
-    return this.http.put<any>(this.authURL+'usuario/', usuario);
+  public actualizaUsuario(usuario:ActualizaUsuario): Observable<any>{
+    return this.http.put<any>(this.authURL+'auth/'+usuario.email, usuario);
   }
 
 }

@@ -16,6 +16,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { TokenService } from 'src/app/services/token/token.service';
 import { NuevoUsuario } from 'src/app/models/nuevo-usuario/nuevo-usuario';
 import { LoginUsuario } from 'src/app/models/login-usuario/login-usuario';
+import { ActualizaUsuario } from 'src/app/models/actualizaUsuario/actualiza-usuario';
 
 @Component({
     selector: 'app-register',
@@ -29,6 +30,7 @@ export class RegisterComponent implements OnInit {
     isRegistedFail = false;
     isLoginFail = false;
     nuevoUsuario: NuevoUsuario;
+    actualizaUsuario: ActualizaUsuario;
     email: string;
     nombreUsuario: string;
     password: string;
@@ -218,14 +220,34 @@ export class RegisterComponent implements OnInit {
                 nro_contacto: value.telefonoFamilia
             };
             this.registerService.registrarFamilia(nuevaFamilia).subscribe((familia: Familia) => {
-                this.nuevoUsuario.setIdFamilia(familia.id);
-                this.authService.actualizaUsuario(this.nuevoUsuario).subscribe(respuesta => {
+                this.actualizaUsuario = new ActualizaUsuario(this.nuevoUsuario.email, this.nuevoUsuario.password, this.nuevoUsuario.nombre, this.nuevoUsuario.roles);
+                this.actualizaUsuario.setIdFamilia(familia.id);
+                this.actualizaUsuario.setRoles(this.roles);
+
+                // this.nuevoUsuario.setIdFamilia(familia.id);
+                // this.nuevoUsuario.setRoles(this.roles);
+
+                this.authService.actualizaUsuario(this.actualizaUsuario).subscribe(respuesta => {
                     console.log("respuesta server");
                     console.log(respuesta);
+                    this.tokenService.setFamilia(this.actualizaUsuario.idFamilia);
                     this.redirecciona();
 
 
-                }), err => console.log("Error al actualizar usuario.", err);
+                }), err => {
+                    if (err.status == 201) { //se actualiza el usuario OK
+                        console.log(err);
+                        this.tokenService.setFamilia(this.actualizaUsuario.idFamilia);
+                        this.redirecciona();//NO FUNCA ACA
+                    } else {
+                        this.isRegisted = false;
+                        this.isRegistedFail = true;
+                        this.errorMessage = err.error.message;
+                        console.log(err);
+                        console.log("etra por error error");
+                    }
+
+                }
 
             }), err => console.log("Error al crear familia", err);
             // this.router.navigate(['/mis-arboles']);
@@ -255,13 +277,34 @@ export class RegisterComponent implements OnInit {
                 this.registerService.registrarOrganizacion(nuevaOrganizacion).subscribe((organizacion: Organizacion) => {
                     console.log(organizacion);
 
-                    this.nuevoUsuario.setIdOrganizacion(organizacion.id);
-                    this.authService.actualizaUsuario(this.nuevoUsuario).subscribe(respuesta => {
+                    this.actualizaUsuario = new ActualizaUsuario(this.nuevoUsuario.email, this.nuevoUsuario.password, this.nuevoUsuario.nombre, this.nuevoUsuario.roles);
+                    this.actualizaUsuario.setIdOrganizacion(organizacion.id);
+                    this.actualizaUsuario.setRoles(this.roles);
+
+                    // this.nuevoUsuario.setIdOrganizacion(organizacion.id);
+                    // this.nuevoUsuario.setRoles(this.roles);
+
+                    this.authService.actualizaUsuario(this.actualizaUsuario).subscribe(respuesta => {
                         console.log("respuesta server");
                         console.log(respuesta);
+                        this.tokenService.setOrganizacion(this.actualizaUsuario.idOrganizacion);
+
                         this.redirecciona();
 
-                    }), err => console.log("Error al actualizar usuario.", err);
+                    }), err => {
+                        if (err.status == 201) { //se actualiza el usuario OK
+                            console.log(err);
+                            this.tokenService.setOrganizacion(this.actualizaUsuario.idOrganizacion);
+
+                            this.redirecciona();
+                        } else {
+                            this.isRegisted = false;
+                            this.isRegistedFail = true;
+                            this.errorMessage = err.error.message;
+                            console.log(err);
+                        }
+
+                    }
 
                 }), err => console.log("Error al crear organizacion", err);
 
@@ -288,12 +331,6 @@ export class RegisterComponent implements OnInit {
                 this.roles = this.tokenService.getAuthorities();
 
                 this.conectarUsuario(value);
-
-
-
-
-
-
 
             },
             err => {
