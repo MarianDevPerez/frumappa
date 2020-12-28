@@ -66,7 +66,7 @@
     "jquery-sparkline": "2.4.0",
     "jquery.browser": "0.1.0",
     "jquery.flot.spline": "themicon/jquery.flot.spline",
-    "jquery.flot.tooltip": "github:krzysu/flot.tooltip",
+    
     "lodash": "4.17.12",
     "modernizr": "3.7.1",
     "moment": "2.22.2",
