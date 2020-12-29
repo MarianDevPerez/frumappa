@@ -3,12 +3,9 @@ import { SettingsService } from '../../../../../services/core/settings/settings.
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { CustomValidators } from 'ngx-custom-validators';
 import { RegisterService } from 'src/app/services/register/register.service';
-import { registerCalendarSystem } from '@fullcalendar/core/datelib/calendar-system';
 import { Familia } from 'src/app/interfaces/familia';
-import { validateHorizontalPosition } from '@angular/cdk/overlay';
 import { TipoOrganizacionService } from 'src/app/services/tipo-organizacion/tipo-organizacion.service';
 import { TipoOrganizacion } from 'src/app/interfaces/tipo-organizacion';
-import { UserI } from 'src/app/interfaces/user-i';
 import { Organizacion } from 'src/app/interfaces/organizacion';
 import { Representante } from 'src/app/interfaces/representante';
 import { Router } from '@angular/router';

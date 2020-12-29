@@ -17,24 +17,35 @@ import { BienvenidaComponent } from './template/pages/bienvenida/bienvenida.comp
 
 export const routes: Routes = [
 
+    // Not lazy-loaded routes
+    { path: '', redirectTo: 'bienvenida', pathMatch: 'full' },
+    { path: 'login', component: LoginComponent },
+    { path: 'register', component: RegisterComponent },
+    { path: 'recover', component: RecoverComponent },
+    { path: 'lock', component: LockComponent },
+    { path: 'maintenance', component: MaintenanceComponent },
+    { path: '404', component: Error404Component },
+    { path: '500', component: Error500Component },
+    { path: 'bienvenida', component: BienvenidaComponent },
+
+
     {
         path: '',
         component: LayoutComponent,
         children: [
-            { path: '', redirectTo: 'mis-arboles', pathMatch: 'full' },
             { path: 'mis-arboles', loadChildren: () => import('./template/home/home.module').then(m => m.HomeModule),canActivate: [FamiliaGuard],data: {expectedRol: ['fam']} },
             //{ path: 'home', loadChildren: () => import('./template/home/home.module').then(m => m.HomeModule) },
-            { path: 'dashboard', loadChildren: () => import('./template/dashboard/dashboard.module').then(m => m.DashboardModule) },
-            { path: 'widgets', loadChildren: () => import('./template/widgets/widgets.module').then(m => m.WidgetsModule) },
-            { path: 'material', loadChildren: () => import('./template/material/material.module').then(m => m.MaterialModule) },
-            { path: 'elements', loadChildren: () => import('./template/elements/elements.module').then(m => m.ElementsModule) },
-            { path: 'forms', loadChildren: () => import('./template/forms/forms.module').then(m => m.FormsModule) },
-            { path: 'charts', loadChildren: () => import('./template/charts/charts.module').then(m => m.ChartsModule) },
-            { path: 'tables', loadChildren: () => import('./template/tables/tables.module').then(m => m.TablesModule) },
+            //{ path: 'dashboard', loadChildren: () => import('./template/dashboard/dashboard.module').then(m => m.DashboardModule) },
+            //{ path: 'widgets', loadChildren: () => import('./template/widgets/widgets.module').then(m => m.WidgetsModule) },
+            //{ path: 'material', loadChildren: () => import('./template/material/material.module').then(m => m.MaterialModule) },
+            //{ path: 'elements', loadChildren: () => import('./template/elements/elements.module').then(m => m.ElementsModule) },
+            //{ path: 'forms', loadChildren: () => import('./template/forms/forms.module').then(m => m.FormsModule) },
+            //{ path: 'charts', loadChildren: () => import('./template/charts/charts.module').then(m => m.ChartsModule) },
+            //{ path: 'tables', loadChildren: () => import('./template/tables/tables.module').then(m => m.TablesModule) },
             { path: 'maps', loadChildren: () => import('./template/maps/maps.module').then(m => m.MapsModule) },
-            { path: 'blog', loadChildren: () => import('./template/blog/blog.module').then(m => m.BlogModule) },
-            { path: 'ecommerce', loadChildren: () => import('./template/ecommerce/ecommerce.module').then(m => m.EcommerceModule) },
-            { path: 'extras', loadChildren: () => import('./template/extras/extras.module').then(m => m.ExtrasModule) },
+            //{ path: 'blog', loadChildren: () => import('./template/blog/blog.module').then(m => m.BlogModule) },
+            //{ path: 'ecommerce', loadChildren: () => import('./template/ecommerce/ecommerce.module').then(m => m.EcommerceModule) },
+            //{ path: 'extras', loadChildren: () => import('./template/extras/extras.module').then(m => m.ExtrasModule) },
             // tslint:disable-next-line: max-line-length
             { path: 'mis-solicitudes', loadChildren: () => import('./template/missolicitudes/missolicitudes.module').then(m => m.MissolicitudesModule),canActivate: [FamiliaGuard],data: {expectedRol: ['fam']} },
             // tslint:disable-next-line: max-line-length
@@ -58,18 +69,10 @@ export const routes: Routes = [
         ]
     },
 
-    // Not lazy-loaded routes
-    { path: 'login', component: LoginComponent },
-    { path: 'register', component: RegisterComponent },
-    { path: 'recover', component: RecoverComponent },
-    { path: 'lock', component: LockComponent },
-    { path: 'maintenance', component: MaintenanceComponent },
-    { path: '404', component: Error404Component },
-    { path: '500', component: Error500Component },
-    { path: 'bienvenida', component: BienvenidaComponent },
+    
 
 
     // Not found
-    { path: '**', redirectTo: 'mis-arboles' }
+    { path: '**', redirectTo: 'login' }
 
 ];

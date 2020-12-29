@@ -5,6 +5,7 @@ const screenfull = require('screenfull');
 import { UserblockService } from '../sidebar/userblock/userblock.service';
 import { SettingsService } from '../../../services/core/settings/settings.service';
 import { MenuService } from '../../../services/core/menu/menu.service';
+import { TokenService } from 'src/app/services/token/token.service';
 
 @Component({
     selector: 'app-header',
@@ -20,7 +21,7 @@ export class HeaderComponent implements OnInit {
     isNavSearchVisible: boolean;
     @ViewChild('fsbutton', { static: true }) fsbutton;  // the fullscreen button
 
-    constructor(public menu: MenuService, public userblockService: UserblockService, public settings: SettingsService, public injector: Injector) {
+    constructor(public menu: MenuService, public userblockService: UserblockService, public settings: SettingsService, public injector: Injector,private tokenService:TokenService) {
 
         // show only a few items on demo
         this.menuItems = menu.getMenu().slice(0, 4); // for horizontal layout
@@ -90,5 +91,9 @@ export class HeaderComponent implements OnInit {
         if (screenfull.enabled) {
             screenfull.toggle();
         }
+    }
+    cerrarSesion(){
+        this.tokenService.logOut();
+        this.router.navigate(['/bienvenida']);
     }
 }
