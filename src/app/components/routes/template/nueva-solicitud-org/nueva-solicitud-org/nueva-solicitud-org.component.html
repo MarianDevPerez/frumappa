@@ -12,7 +12,7 @@
         <select *ngIf="recolectores" class="custom-select custom-select-lg mb-3" [(ngModel)]="recolectorSelect">
           <option selected hidden disabled value="-1">Seleccione un Recolector...</option>
           <option *ngFor="let recolector of recolectores" [value]="recolector.dni">{{recolector.nomyape}}</option>
-        </select>
+        </select> 
   
       </div>
     </div>

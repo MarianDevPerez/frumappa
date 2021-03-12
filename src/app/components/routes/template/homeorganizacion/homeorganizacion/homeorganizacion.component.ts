@@ -4,6 +4,8 @@ import { Solicitud } from 'src/app/interfaces/solicitud';
 import { SolicitudesService } from 'src/app/services/solicitudes/solicitudes.service';
 import {NgbAccordionConfig} from '@ng-bootstrap/ng-bootstrap'
 import { Router } from '@angular/router';
+import { Organizacion } from 'src/app/interfaces/organizacion';
+import { TokenService } from 'src/app/services/token/token.service';
 
 @Component({
   selector: 'app-homeorganizacion',
@@ -15,14 +17,16 @@ export class HomeorganizacionComponent implements OnInit {
   public solicitudesDeFamilias: Array<Solicitud>;
   public solicitudesPendientes: Array<Solicitud>;
   public solicitudes:Array<Solicitud>;
-  constructor(private solicitudesService: SolicitudesService,private acordeonConfig:NgbAccordionConfig, private route:Router) { 
-    acordeonConfig.closeOthers=true;
+  public organizacion:Organizacion;
+  constructor(private solicitudesService: SolicitudesService,private acordeonConfig:NgbAccordionConfig, private route:Router, private tokenService:TokenService) { 
+    acordeonConfig.closeOthers=false;
   }
 
   ngOnInit() {
     this.solicitudes=[];
+    this.organizacion=this.tokenService.getOrganizacion();
     
-    this.solicitudesService.findAllSolicitudes()
+    this.solicitudesService.findAllSolicitudesByIdOrganizacion(this.organizacion.id)
     .subscribe((response: Array<Solicitud>) => {
     this.solicitudes = response;
     this.divideSolicitudes();

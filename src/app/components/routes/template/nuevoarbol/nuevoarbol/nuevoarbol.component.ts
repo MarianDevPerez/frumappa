@@ -2,8 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Arbol } from 'src/app/interfaces/arbol';
 import { Especie } from 'src/app/interfaces/especie';
+import { Familia } from 'src/app/interfaces/familia';
 import { ArbolesService } from 'src/app/services/arboles/arboles.service';
 import { EspeciesService } from 'src/app/services/especies/especies.service';
+import { TokenService } from 'src/app/services/token/token.service';
 import { GoogleComponent } from '../../maps/google/google.component';
 
 @Component({
@@ -15,14 +17,16 @@ export class NuevoarbolComponent implements OnInit {
   public arbol: Arbol;
   arbolId:string;
   public especies:Array<Especie>;
-  constructor(public arbolesService:ArbolesService, private especieService:EspeciesService, private router:Router) { 
+  public familia:Familia;
+  constructor(public arbolesService:ArbolesService, private especieService:EspeciesService, private router:Router, private tokenService:TokenService) { 
   }
   @ViewChild(GoogleComponent) mapaGoogle;
 
   ngOnInit(): void {
+    this.familia=this.tokenService.getFamilia();
     this.arbol={
       nom_especie:"Seleccione una Especie...",
-      id_familia:1
+      id_familia:this.familia.id
   };
     this.especieService.findAll().subscribe((especies:Array<Especie>)=>this.especies=especies);
   }

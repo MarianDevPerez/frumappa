@@ -1,9 +1,9 @@
 <div class="container-home animated fast fadeIn mt-3">
 
   <div class="nuevoa text-center w-100 pt-2 pb-2 animated fast">
-    <h1 class="text-light">
+    <h2 class="text-light">
       Solicitud de Donación
-    </h1>
+    </h2>
   </div>
   <!-- En esta cards tendria que hacer que se vea la cards selecionada y pase los parametros a esta que esta de un modo orizontal segun la pantalla -->
   <div class="card mb-3 mt-3 ml-auto mr-auto animated fast" style="max-width: 90%;">
@@ -30,7 +30,7 @@
     <div class="col-12">
 
       <select name="seleccionOrganizacion" class="custom-select custom-select-lg mb-3" [(ngModel)]="organizacionSelect">
-        <option hidden selected>Organización</option>
+        <option hidden disabled selected value="0">Seleccione una organización</option>
         <option *ngFor="let org of organizaciones" [value]="org.id">{{org.nombre}}</option>
       </select>
     </div>
@@ -45,9 +45,9 @@
     <div class="col-6 animated fast">
       <!-- selecciona si es por unidades o kilogramo -->
       <select class="custom-select custom-select-lg mb-3" [(ngModel)]="unidades">
-        <option selected>Unidad</option>
-        <option value="1">Kilogramos</option>
-        <option value="2">Unidades</option>
+        <option disabled hidden selected>Unidad</option>
+        <option>Kilogramos</option>
+        <option>Unidades</option>
       </select>
 
     </div>
@@ -67,7 +67,7 @@
 
   </div>
   <!-- boton de confirmacion -->
-  <div class="text-center mt-3 mb-5">
+  <div class="text-center mt-3 mb-2">
     <button class="btn btn-success btn-sx" type="button" (click)="confirmarSolicitud()">Confirmar</button>
   </div>
 

@@ -256,7 +256,8 @@ export class RegisterComponent implements OnInit {
                 nombre: value.nombreOrganizacion,
                 nro_contacto: value.telefonoOrganizacion,
                 representante: value.dni,
-                tipo: value.tipoOrganizacion
+                tipo: value.tipoOrganizacion,
+                logo:'assets/img/logoarbol.jpg'
 
             };
             let nuevoRepresentante: Representante = {

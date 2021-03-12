@@ -1,7 +1,7 @@
 const Home = {
     text: 'Mis Arboles',
     link: '/mis-arboles',
-    icon: 'icon-home'
+    icon: 'fa fa-tree'
 };
 
 // const Dashboard = {
@@ -43,7 +43,7 @@ const CuidadodearbolesModule = {
 };
 
 const PerfilorganizacionModule = {
-    text: 'Perfil de Órganizaciones',
+    text: 'Perfil de Organizaciones',
     link: '/perfilorganizacion',
     icon: 'icon-chemistry'
 };
@@ -458,9 +458,9 @@ const headingComponents = {
 
 
 const HomeorganizacionModule = {
-    text: 'Home Organizacion',
+    text: 'Solicitudes',
     link: '/homeorganizacion',
-    icon: 'icon-home'
+    icon: 'icon-note'
 };
 
 
@@ -500,7 +500,7 @@ const FamiliasModule = {
 const OrganizacionesModule = {
     text: 'Organizaciones',
     link: '/organizaciones',
-    icon: 'icon-tree'
+    icon: 'fa fa-university'
 };
 
 

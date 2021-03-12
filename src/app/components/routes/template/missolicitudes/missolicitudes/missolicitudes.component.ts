@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Familia } from 'src/app/interfaces/familia';
 import { Solicitud } from 'src/app/interfaces/solicitud';
 import { SolicitudesService } from 'src/app/services/solicitudes/solicitudes.service';
+import { TokenService } from 'src/app/services/token/token.service';
 
 @Component({
   selector: 'app-missolicitudes',
@@ -12,12 +14,14 @@ export class MissolicitudesComponent implements OnInit {
   public solicitudesConfirmadas: Array<Solicitud>=[];
   public solicitudesDeOrganizaciones: Array<Solicitud>=[];
   public solicitudesPendientes: Array<Solicitud>=[];
-  constructor(private solicitudesService: SolicitudesService) { }
+  public familia:Familia;
+  constructor(private solicitudesService: SolicitudesService, private tokenService:TokenService) { }
 
   ngOnInit() {
+    this.familia=this.tokenService.getFamilia();
     this.solicitudes=[];
     
-    this.solicitudesService.findAllSolicitudes()
+    this.solicitudesService.findAllSolicitudesByIdFamilia(this.familia.id)
     .subscribe((response: Array<Solicitud>) => {
     this.solicitudes = response;
     this.divideSolicitudes();

@@ -16,19 +16,19 @@
       <app-cardsolicitud [solicitud]="solicitud"></app-cardsolicitud>
     </div>
 
-    <h3 class=" btn-success container-fluid text-center btn-block mb-3  p-3 rounded-left rounded-right">
+    <h4 class=" btn-success container-fluid text-center btn-block mb-3  p-3 rounded-left rounded-right">
       Solicitudes de
-      Organizaciones</h3>
+      Organizaciones</h4>
 
     <div class="animated fast fadeIn puntero" *ngFor="let solicitud of solicitudesDeOrganizaciones" [routerLink]="['/mis-solicitudes/de-organizacion/',solicitud.id]">
       <app-cardsolicitud [solicitud]="solicitud"></app-cardsolicitud>
     </div>
 
-    <h4 class=" btn-success container-fluid text-center btn-block mb-3  p-3 rounded-left rounded-right">
+    <h5 class=" btn-success container-fluid text-center btn-block mb-3  p-3 rounded-left rounded-right">
       Pendiente de
       confirmación del
       recolector
-    </h4>
+    </h5>
 
 
   </div>

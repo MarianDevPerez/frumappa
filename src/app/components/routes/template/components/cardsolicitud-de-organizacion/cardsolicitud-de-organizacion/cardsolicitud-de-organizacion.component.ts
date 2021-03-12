@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Arbol } from 'src/app/interfaces/arbol';
+import { Familia } from 'src/app/interfaces/familia';
 import { Solicitud } from 'src/app/interfaces/solicitud';
 import { ArbolesService } from 'src/app/services/arboles/arboles.service';
+import { FamiliasService } from 'src/app/services/familias/familias.service';
 
 @Component({
   selector: 'app-cardsolicitud-de-organizacion',
@@ -11,16 +12,19 @@ import { ArbolesService } from 'src/app/services/arboles/arboles.service';
 })
 export class CardsolicitudDeOrganizacionComponent implements OnInit {
   @Input() solicitud: Solicitud;
-  arbol:Arbol;
-  constructor(private arbolesService: ArbolesService, private router:Router) { }
+  public arbol:Arbol;
+  public familia:Familia;
+  constructor(private arbolesService: ArbolesService, private familiaService:FamiliasService) { }
 
   ngOnInit(): void {
     this.arbolesService.findArbol(this.solicitud.arbol)
     .subscribe((response: Arbol) => {
       this.arbol = response;
+      this.familiaService.findFamilia(this.arbol.id_familia)
+    .subscribe((response: Familia) => {
+      this.familia = response;
     });
-  }
-  public iraConfirmar(){
-    this.router.navigate(['mis-solicitudes/de-organizacion/'+this.solicitud.id]);
+    });
+    
   }
 }

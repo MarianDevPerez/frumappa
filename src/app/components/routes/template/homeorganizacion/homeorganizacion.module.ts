@@ -8,7 +8,7 @@ import { CardconforgModule } from '../components/cardconforg/cardconforg.module'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SolicitudconfirmadaComponent } from '../solicitudconfirmada/solicitudconfirmada/solicitudconfirmada.component';
 import { SolicitudrecoleccionComponent } from '../solicitudrecoleccion/solicitudrecoleccion/solicitudrecoleccion.component';
-import { CardsolicitudModule } from '../components/cardsolicitud/cardsolicitud.module';
+import { CardsolicitudDeOrganizacionModule } from '../components/cardsolicitud-de-organizacion/cardsolicitud-de-organizacion.module';
 import { SolicitudrecoleccionModule} from '../solicitudrecoleccion/solicitudrecoleccion.module'
 
 
@@ -35,7 +35,7 @@ const routes: Routes = [
     imports: [
         CardsolirecModule,
         CardconforgModule,
-        CardsolicitudModule,
+        CardsolicitudDeOrganizacionModule,
         MaterialModule,
         CommonModule,
         NgbModule,

@@ -17,4 +17,7 @@ export class OrganizacionesService {
     const url =this.apiBaseUrl+'/organizacion/'+id;
     return this.http.get<Organizacion>(url);
   }
+  public editOrganizacion(organizacion: Organizacion): Observable<any>{
+    return this.http.put(this.apiBaseUrl+'/organizacion', organizacion);
+  }
 }

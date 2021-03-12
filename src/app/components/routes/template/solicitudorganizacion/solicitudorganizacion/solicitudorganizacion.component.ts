@@ -44,5 +44,9 @@ export class SolicitudorganizacionComponent implements OnInit {
   public confirmar(){
     this.router.navigate(['/mis-solicitudes/confirmar/'+this.solicitud.id]);
   }
+  public rechazarSolicitud(){
+    //implementar rechazar solicitud
+    //this.solicitudesService.
+  }
 
 }

@@ -15,6 +15,13 @@ public findAllSolicitudes(): Observable<any>{
   return this.http.get(this.apiBaseUrl+'/solicitud');
 }
 
+public findAllSolicitudesByIdFamilia(id:number): Observable<any>{
+  return this.http.get(this.apiBaseUrl+'/solicitud/familia/'+id);
+}
+public findAllSolicitudesByIdOrganizacion(id:number): Observable<any>{
+  return this.http.get(this.apiBaseUrl+'/solicitud/org/'+id);
+}
+
 //solicitud nueva
 public createSolicitud(solicitud: Solicitud): Observable<any>{
   return this.http.post(this.apiBaseUrl+'/solicitud', solicitud);
@@ -22,6 +29,9 @@ public createSolicitud(solicitud: Solicitud): Observable<any>{
 //
 public editSolicitud(solicitud: Solicitud): Observable<any>{
   return this.http.put(this.apiBaseUrl+'/solicitud', solicitud);//+solicitud.id
+}
+public deleteSolicitud(id:number){
+  //return this.http.delete(this.apiBaseUrl+'/solicitud/',id);
 }
 
 

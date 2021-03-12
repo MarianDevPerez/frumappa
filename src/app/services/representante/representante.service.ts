@@ -18,4 +18,8 @@ export class RepresentanteService {
     const url =this.apiBaseUrl+'/representante/'+id;
     return this.http.get<Representante>(url);
   }
+
+  public editRepresentante(representante: Representante): Observable<any>{
+    return this.http.put(this.apiBaseUrl+'/representante', representante);
+  }
 }

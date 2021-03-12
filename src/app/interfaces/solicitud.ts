@@ -1,7 +1,7 @@
 export interface Solicitud {
     id?:number;
     //tipo?:string;
-    //idFamilia:number;tendria que tener
+    familia?:number;//tendria que tener
     fecha?:string;
     hora?:string;
     arbol?:number;

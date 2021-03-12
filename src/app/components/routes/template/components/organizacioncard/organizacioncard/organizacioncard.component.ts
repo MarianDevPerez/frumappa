@@ -15,8 +15,7 @@ export class OrganizacioncardComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.organizacion.representante);
-
-    this.representantesService.findRepresentante(this.organizacion.representante).subscribe((representante:Representante)=> console.log(representante));//this.representante=representante
+    this.representantesService.findRepresentante(this.organizacion.representante).subscribe((representante:Representante)=> this.representante=representante);//
     console.log(this.representante);
   }
 

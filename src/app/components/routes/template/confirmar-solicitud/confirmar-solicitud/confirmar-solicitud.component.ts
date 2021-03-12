@@ -28,7 +28,7 @@ export class ConfirmarSolicitudComponent implements OnInit {
   }
   public confirmarSolicitud(){
     
-    if(this.cantidad!= undefined &&this.unidades!= undefined &&this.fecha!=undefined&&this.hora!=undefined){
+    if(this.cantidad!= undefined &&this.unidades!= undefined &&this.fecha!=undefined&&this.hora!=undefined&&this.unidades!="Unidad"){
       this.solicitud.fecha=this.fecha;
       this.solicitud.hora=this.hora;
       this.solicitud.cantidad=this.cantidad+" "+this.unidades;
@@ -44,7 +44,7 @@ export class ConfirmarSolicitudComponent implements OnInit {
 
   ngOnInit(): void {
     
-    
+    this.unidades="Unidad";
     this.solicitudesService.findSolicitud(this.idSolicitud).subscribe((response : Solicitud)=>{
       this.solicitud=response;
       console.log(this.solicitud);

@@ -5,42 +5,65 @@
     </h1>
   </div>
 
-  <div class="row mt-5 animated fast fadeIn">
-    <div class="col-12">
-
-      <select class="custom-select custom-select-lg mb-3">
-        <option selected>Recolector</option>
-        <option value="1">Fede Galdeano</option>
-        <option value="2">Augusto Giacone</option>
-        <option value="3">Mariano Perez</option>
-        <option value="4">Emiliano Castro</option>
-        <option value="5">Martin Lora Jorge</option>
-      </select>
-
+  <div class="m-3">
+    <div class="row mt-3 animated fast fadeIn">
+      <div class="col-12">
+  
+        <select *ngIf="recolectores" class="custom-select custom-select-lg mb-3" [(ngModel)]="recolectorSelect">
+          <option selected hidden disabled value="-1">Seleccione un Recolector...</option>
+          <option *ngFor="let recolector of recolectores" [value]="recolector.dni">{{recolector.nomyape}}</option>
+        </select>
+  
+      </div>
     </div>
-  </div>
-
-
-
-
-  <!-- SOLICITUD VISTA DESDE ORGANIZACION -->
-
-
-  <!-- aqui hay que poer la card Detalleorganizacion -->
-  <div class=" w-100  animated fast fadeIn">
-    <app-detalleorganizacion [solicitud]="solicitud"></app-detalleorganizacion>
-  </div>
-
-
-
-
-
-
-  <div class="row text-center mt-3 animated fast fadeIn">
-    <div class="col-6">
-      <a href="/#" class="btn btn-danger py-2 px-4 btn-xs">Rechazar</a>
+  
+  
+  
+  
+    <!-- SOLICITUD VISTA DESDE ORGANIZACION -->
+  
+  
+    <!-- aqui hay que poer la card Detalleorganizacion -->
+    <div class=" w-100  animated fast fadeIn">
+  
+  
+      <ng-container *ngIf="solicitud">
+        <div class="card border-success mb-3 mr-auto ml-auto " style="max-width: 540px;">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <img src="{{arbol.galeria}}" class="card-img" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body text-success">
+                <h5 class="card-title">{{arbol.nom_especie}}</h5>
+                <p class="card-text">Familia: {{familia.nombre}}</p>
+                <p class="card-text">Cantidad: {{solicitud.cantidad}}</p>
+                <p class="card-text">Retiro: {{solicitud.fecha}}, {{solicitud.hora}}</p>
+                <p class="card-text">Direccion: {{arbol.direccion}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+  
+  
+      <!-- <app-detalleorganizacion [solicitud]="solicitud"></app-detalleorganizacion> -->
     </div>
-    <div class="col-6">
-      <a href="/#" class="btn btn-success py-2 px-4 btn-xs">Aceptar</a>
+  
+  
+  
+  
+  
+  
+    <div class="row text-center mt-3 animated fast fadeIn">
+      <div class="col-6" >
+        <a href="/#" class="btn btn-danger py-2 px-4 btn-xs">Rechazar</a>
+      </div>
+      <div class="col-6" (click)="aceptar()">
+        <a href="/#" class="btn btn-success py-2 px-4 btn-xs">Aceptar</a>
+      </div>
     </div>
+  
+    
   </div>
+  

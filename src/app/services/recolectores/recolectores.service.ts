@@ -18,4 +18,12 @@ public findRecolector(id:number){
 public findAll(): Observable<Recolector[]>{
   return this.http.get<Recolector[]>(this.apiBaseUrl+'/recolector');
 }
+
+public createRecolector(recolector: Recolector): Observable<any>{
+  return this.http.post(this.apiBaseUrl+'/recolector', recolector);
+}
+
+public editRecolector(recolector: Recolector): Observable<any>{
+  return this.http.put(this.apiBaseUrl+'/recolector', recolector);
+}
 }

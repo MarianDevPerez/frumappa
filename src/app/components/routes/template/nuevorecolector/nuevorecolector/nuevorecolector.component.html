@@ -2,7 +2,7 @@
 
   <div class="nuevoa text-center w-100 pt-2 pb-2 animated fast">
     <h1 class="text-light">
-      Nuevo Recolectores
+      Nuevo Recolector
     </h1>
   </div>
 
@@ -10,28 +10,28 @@
 
     <div class="col-10 mr-auto ml-auto">
 
-      <form action="">
+      <!-- <form action=""> -->
 
         <div class="form-group">
           <label for="exampleInputEmail1">Nombre del recolector</label>
-          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          <input type="text" class="form-control" id="exampleInputEmail1" [(ngModel)]="nuevoRecolector.nomyape">
           <small id="emailHelp" class="form-text text-muted">Éste campo es Obligatorio</small>
         </div>
 
 
         <div class="form-group">
           <label for="exampleInputEmail1">D.N.I. N°</label>
-          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          <input type="number" class="form-control" id="exampleInputEmail1"  [(ngModel)]="nuevoRecolector.dni">
           <small id="emailHelp" class="form-text text-muted">Campo Obligatorio</small>
         </div>
 
         <div class="form-group">
           <label for="exampleInputEmail1">Numero Telefonico de Contacto</label>
-          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          <input type="number" class="form-control" id="exampleInputEmail1"  [(ngModel)]="nuevoRecolector.num_contacto">
           <small id="emailHelp" class="form-text text-muted"> Campo Obligatorio </small>
         </div>
 
-      </form>
+      <!-- </form> -->
 
       <div class="custom-file col-6 animated fast">
         <input type="file" class="custom-file-input" id="customFileLangHTML">
@@ -45,7 +45,7 @@
 
 
   <div class="col-10 ml-auto mr-auto my-3 animated fast">
-    <button type="button" class="btn btn-outline-primary btn-block">Agregar Recolector</button>
+    <button type="button" class="btn btn-outline-primary btn-block" (click)="agregarRecolector()">Agregar Recolector</button>
   </div>
 
 

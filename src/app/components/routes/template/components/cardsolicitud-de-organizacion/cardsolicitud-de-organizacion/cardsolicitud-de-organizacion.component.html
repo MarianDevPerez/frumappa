@@ -1,9 +1,9 @@
-<div class="card border-success mr-auto ml-auto mt-3 mb-3 " style="width: 90%;">
+<!-- <div class="card border-success mr-auto ml-auto mt-3 mb-3 " style="width: 90%;">
   <div class="row no-gutters">
-    <!-- <div class="col-md-4">
+    <div class="col-md-4">
       <img src="..." class="card-img" alt="...">
     </div> -->
-    <div class="col-8">
+    <!-- <div class="col-8">
       <div class="card-header">{{solicitud.organizacion}}</div>
       <div class="card-body text-success">
         <p class="card-text">A {{solicitud.organizacion}} le interesa retirar los frutos de sobra de tu: </p>
@@ -12,9 +12,36 @@
         </ul>
       </div>
     </div>
-  </div>
+  </div> -->
   <!-- <a [routerLink]="['/peticion']" routerLinkActive="router-link-active" class="text-right">Ver mas...</a> -->
-  <a class="text-right" (click)="iraConfirmar()">
+  <!-- <a class="text-right" (click)="iraConfirmar()">
     Ver más ...
-  </a>
+  </a> 
+</div> -->
+
+
+<div class="card border-success mr-auto ml-auto mt-3 mb-3" >
+
+  <div class="row no-gutters">
+    <!-- <div class="col-md-4">
+      <img src="..." class="card-img" alt="...">
+    </div> -->
+    <div class="col-8">
+
+
+      <div id="imagenContainer" class="card-header block">
+        <img src="{{arbol.galeria}}" class="card-img-top" alt="...">
+      </div>
+
+
+    </div>
+    <div class="card-body block">
+      <div class="text-success">{{arbol.nom_especie}}</div>
+      <div class="card-title">Familia: {{familia.nombre}}</div>
+      <div id="vermas">Ver más...</div>
+    </div>
+    <!-- <a *ngIf="isConfirmada()" [routerLink]="['/confirmadas']" routerLinkActive="router-link-active" class="text-right">Ver mas...</a> -->
+    <!-- <a class="text-right">Ver mas...</a> -->
+  </div>
+
 </div>

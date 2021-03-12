@@ -8,7 +8,18 @@
 
   <div class="row animated fast">
     <div class="col-10 mr-auto ml-auto my-3">
-      <app-organizacioncard [organizacion]="organizacion"></app-organizacioncard>
+      <div class="card text-white bg-success mb-3" style="max-width: 100%;">
+        <h4 class="card-header">{{organizacion.nombre}}</h4>
+        <div class="card-body">
+          <p class="card-title">Tipo: {{organizacion.tipo}}</p>
+          <p class="card-text">Correo: {{organizacion.mail}}.</p>
+          <h6 class="card-text">Representante: {{representante.nomyape}}</h6>
+          <p class="card-text">D.N.I. N°: {{representante.dni}}</p>
+          <p class="card-text">Teléfono: {{representante.nro_contacto}}</p>
+        </div>
+      </div>
+      
+      <!-- <app-organizacioncard [organizacion]="organizacion"></app-organizacioncard> -->
     </div>
   </div>
 

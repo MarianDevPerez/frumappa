@@ -15,7 +15,7 @@
       </ng-template>
       <ng-template ngbPanelContent>
         <div class="animated fast fadeIn puntero" *ngFor="let solicitud of solicitudesConfirmadas" [routerLink]="['/homeorganizacion/a-confirmar',solicitud.id]">
-          <app-cardsolicitud [solicitud]="solicitud"></app-cardsolicitud>
+          <app-cardsolicitud-de-organizacion [solicitud]="solicitud"></app-cardsolicitud-de-organizacion>
         </div>
       </ng-template>
     </ngb-panel>
@@ -29,7 +29,7 @@
       </ng-template>
       <ng-template ngbPanelContent>
         <div class="animated fast fadeIn puntero" *ngFor="let solicitud of solicitudesDeFamilias" [routerLink]="['/homeorganizacion/solicitud-recoleccion/',solicitud.id]">
-          <app-cardsolicitud [solicitud]="solicitud"></app-cardsolicitud>
+          <app-cardsolicitud-de-organizacion [solicitud]="solicitud"></app-cardsolicitud-de-organizacion>
         </div>
       </ng-template>
     </ngb-panel>
@@ -43,7 +43,7 @@
       </ng-template>
       <ng-template ngbPanelContent>
         <div class="animated fast fadeIn puntero" *ngFor="let solicitud of solicitudesPendientes" [routerLink]="['/homeorganizacion/a-confirmar/',solicitud.id]">
-          <app-cardsolicitud [solicitud]="solicitud"></app-cardsolicitud>
+          <app-cardsolicitud-de-organizacion [solicitud]="solicitud"></app-cardsolicitud-de-organizacion>
         </div>
       </ng-template>
     </ngb-panel>
